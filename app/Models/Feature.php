@@ -9,6 +9,12 @@ class Feature extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'value',
+        'description',
+        'option_id'
+    ];
+
     //Relacion uno a muchos inversa
     public function option(){
         return $this->belongsTo(Option::class);
@@ -16,6 +22,7 @@ class Feature extends Model
 
     //Relacion muchos a muchos
     public function variants(){
-        return $this->belongsTo(Variant::class);
+        return $this->belongsToMany(Variant::class)
+                    ->withTimestamps();
     }
 }
