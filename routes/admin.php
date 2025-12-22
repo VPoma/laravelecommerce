@@ -3,9 +3,5 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return 'Hola desde el Administrador';
+    return view('admin.dashboard');
 })->name('dashboard');
-
-Route::get('/tiki', function () {
-    return 'Hola tiki tiki';
-})->name('tiki.index');
