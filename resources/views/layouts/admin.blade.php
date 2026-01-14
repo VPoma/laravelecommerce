@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/b69b6703fc.js" crossorigin="anonymous"></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -19,9 +22,20 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased" x-data="{ 
-    sidebarOpen: false 
-}">
+<body class="font-sans antialiased" 
+    x-data="{ 
+        sidebarOpen: false 
+    }"
+    :class="{ 
+        'overflow-hidden': sidebarOpen 
+    }">
+
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden" 
+        style="display: none;"
+        x-show="sidebarOpen"
+        x-on:click="sidebarOpen = false">
+
+    </div>
 
     @include('layouts.partials.admin.navigation')
 

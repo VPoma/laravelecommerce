@@ -1,3 +1,15 @@
+@php
+    $links = [
+        [
+            //'label' => 'Dashboard', -36:48
+            'icon' => 'fa-solid fa-gauge-high',
+            'name' => 'dashboard',
+            'route' => 'admin.dashboard',
+            'active' => request()->routeIs('admin.dashboard'),
+        ]
+    ];
+@endphp
+
 <aside id="top-bar-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-full transition-transform sm:translate-x-0"
     :class="{
@@ -5,7 +17,7 @@
         '-translate-x-full ease-in': !sidebarOpen
     }"
     aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto bg-white border-r border-gray-600">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-white border-r border-default">
         <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Flowbite Logo" />
             <span class="self-center text-lg text-heading font-semibold whitespace-nowrap">Flowbite</span>
