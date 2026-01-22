@@ -41,12 +41,22 @@
 
     @include('layouts.partials.admin.sidebar')
 
-    <div class="p-4 sm:ml-64 mt-14">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-base">
+    <div class="p-4 sm:ml-64">
 
-            {{ $slot }}
+        <!--11:53-->
+
+        <div class="mt-14">
+
+            @include('layouts.partials.admin.breadcrumb')
+
+            <div class="p-4 border-2 border-gray-200 border-dashed rounded-base">
+
+                {{ $slot }}
+
+            </div>
 
         </div>
+
     </div>
 
     @livewireScripts
