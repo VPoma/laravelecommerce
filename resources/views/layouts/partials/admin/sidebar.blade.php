@@ -1,11 +1,19 @@
 @php
     $links = [
         [
-            //'label' => 'Dashboard', -36:48
-            'icon' => 'fa-solid fa-gauge-high',
+            //'label' => 'Dashboard',
+            //Dashboard Principal
             'name' => 'Dashboard',
+            'icon' => 'fa-solid fa-gauge-high',
             'route' => route('admin.dashboard'),
             'active' => request()->routeIs('admin.dashboard'),
+        ],
+        [
+            // Familia de Productos
+            'name' => 'Familias',
+            'icon' => 'fa-solid fa-box-open',
+            'route' => route('admin.families.index'),
+            'active' => request()->routeIs('admin.families.*'),
         ]
     ];
     //class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
