@@ -24,17 +24,13 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased" 
-    x-data="{ 
-        sidebarOpen: false 
-    }"
-    :class="{ 
-        'overflow-hidden': sidebarOpen 
-    }">
+<body class="font-sans antialiased" x-data="{
+    sidebarOpen: false
+}" :class="{
+    'overflow-hidden': sidebarOpen
+}">
 
-    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden" 
-        style="display: none;"
-        x-show="sidebarOpen"
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden" style="display: none;" x-show="sidebarOpen"
         x-on:click="sidebarOpen = false">
 
     </div>
@@ -47,7 +43,16 @@
 
         <div class="mt-14">
 
-            @include('layouts.partials.admin.breadcrumb')
+            <div class="flex justify-between items-center">
+                @include('layouts.partials.admin.breadcrumb')
+
+                @isset($action)
+                    <div>
+                        {{ $action }}
+                    </div>
+                @endisset
+
+            </div>
 
             <div class="p-4 border-2 border-gray-200 border-dashed rounded-base">
 
