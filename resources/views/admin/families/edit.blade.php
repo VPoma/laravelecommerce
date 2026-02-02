@@ -31,7 +31,11 @@
             </div>
 
             <div class="flex justify-end">
-                <button type="submit" class="btn btn-green">
+                <x-danger-button onclick="confirmDelete()">
+                    Eliminar
+                </x-danger-button>
+
+                <button type="submit" class="btn btn-green ml-2">
                     Actualizar
                 </button>
             </div>
@@ -39,5 +43,20 @@
         </form>
 
     </div>
+    <form action="{{ route('admin.families.destroy', $family) }}" method="POST" id="delete-form">
+        @csrf
+        @method('DELETE')
+        <x-danger-button type="submit">
+            Eliminar
+        </x-danger-button>
+    </form>
+
+    @push('js')
+        <script>
+            function confirmDelete() {
+                document.getElementById('delete-form').submit();
+            }
+        </script>
+    @endpush
 
 </x-admin-layout>
