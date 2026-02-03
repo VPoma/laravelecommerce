@@ -44,11 +44,11 @@
 
     </div>
     <form action="{{ route('admin.families.destroy', $family) }}" method="POST" id="delete-form">
+        
         @csrf
+        
         @method('DELETE')
-        <x-danger-button type="submit">
-            Eliminar
-        </x-danger-button>
+
     </form>
 
     @push('js')
