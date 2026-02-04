@@ -15,6 +15,7 @@ class FamilyController extends Controller
     {
         $families = Family::orderby('id','desc')
             ->paginate(10);
+            
         return view('admin.families.index',compact('families'));
     }
 
