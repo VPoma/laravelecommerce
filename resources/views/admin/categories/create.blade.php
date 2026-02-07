@@ -16,17 +16,20 @@
         @csrf
 
         <div class="card">
+
+            <x-validation-errors class="mb-4" />
+
             <div class="mb-4">
                 <label for="" class="block mb-2.5 text-sm font-medium text-heading">
                     Familia
                 </label>
-                <select name="family_id">
+                <x-select name="family_id" class="w-full">
                     @foreach ($families as $family)
                         <option value="{{ $family->id }}">
                             {{ $family->name }} 
                         </option>
                     @endforeach
-                </select>
+                </x-select>
             </div>
             <div class="mb-4">
                 <label for="first_name" class="block mb-2.5 text-sm font-medium text-heading">

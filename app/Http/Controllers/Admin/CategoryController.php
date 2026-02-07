@@ -34,7 +34,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'family_id' => 'required|exists:families,id',
+        ]);
+
+        Category::create($request->all());
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Bien hecho!',
+            'text' => 'Categoría creada correctamente.'
+        ]);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**
