@@ -21,7 +21,14 @@
             'icon' => 'fa-solid fa-tags',
             'route' => route('admin.categories.index'),
             'active' => request()->routeIs('admin.categories.*'),
-        ]
+        ],
+        [
+            // Subcategorias
+            'name' => 'Subcategorías',
+            'icon' => 'fa-solid fa-tag',
+            'route' => route('admin.subcategories.index'),
+            'active' => request()->routeIs('admin.subcategories.*'),
+        ],
     ];
     //class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
 @endphp
