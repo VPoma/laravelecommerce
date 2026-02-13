@@ -15,6 +15,7 @@ class SubcategoryController extends Controller
     public function index()
     {
         $subcategories = Subcategory::with('category.family')
+            ->orderBy('id', 'desc')
             ->paginate(10);
 
         return view('admin.subcategories.index', compact('subcategories'));
@@ -35,13 +36,22 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
             'category_id' => 'required|exists:categories,id',
+            'name' => 'required'
         ]);
 
         /*03:00 25*/
 
         Subcategory::create($request->all());
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Bien hecho!',
+            'text' => 'Subcategoría creada correctamente.'
+        ]);
+
+        return redirect()->route('admin.subcategories.index');
+ 
     }
 
     /**
