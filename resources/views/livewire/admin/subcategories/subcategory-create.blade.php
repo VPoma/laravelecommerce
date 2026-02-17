@@ -1,5 +1,5 @@
 <div>
-    <form>
+    <form wire:submit="save">
 
         <div class="card">
 
@@ -11,8 +11,9 @@
                 </label>
 
                 <x-select name="family_id" class="w-full" wire:model.live="subcategory.family_id">
+
                     <option value="" disabled>
-                        Seleccione una familia -13:00
+                        Seleccione una familia
                     </option>
 
                     @foreach ($families as $family)
@@ -23,12 +24,17 @@
                 </x-select>
             </div>
 
-            {{--<div class="mb-4">
+            <div class="mb-4">
                 <label for="" class="block mb-2.5 text-sm font-medium text-heading">
                     Categorías
                 </label>
-                <x-select name="category_id" class="w-full">
-                    @foreach ($categories as $category)
+                <x-select name="category_id" class="w-full" wire:model.live="subcategory.category_id">
+
+                    <option value="" disabled>
+                        Seleccione una Categoría
+                    </option>
+
+                    @foreach ($this->categories as $category)
                         <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
                             {{ $category->name }}
                         </option>
@@ -36,7 +42,7 @@
                 </x-select>
             </div>
 
-            <div class="mb-4">
+            {{--<div class="mb-4">
                 <label for="" class="block mb-2.5 text-sm font-medium text-heading">
                     Familias
                 </label>
@@ -46,7 +52,7 @@
                             {{ $family->name }}
                         </option>
                     @endforeach
-                </x-select> --}}
+                </x-select>--}}
 
             <div class="mb-4">
                 <label for="first_name" class="block mb-2.5 text-sm font-medium text-heading">
@@ -54,7 +60,9 @@
                 </label>
                 <input type="text" id="first_name"
                     class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                    placeholder="Ingrese el nombre de la Categoria" />
+                    placeholder="Ingrese el nombre de la Categoria" 
+                    wire:model="subcategory.name"
+                    />
             </div>
 
             <div class="flex justify-end">
@@ -66,5 +74,4 @@
 
     </form>
 
-    @dump($subcategory)
 </div>

@@ -40,8 +40,6 @@ class SubcategoryController extends Controller
             'name' => 'required'
         ]);
 
-        /*03:00 25*/
-
         Subcategory::create($request->all());
 
         session()->flash('swal', [
