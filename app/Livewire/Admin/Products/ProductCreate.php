@@ -6,14 +6,19 @@ use App\Models\Category;
 use Livewire\Component;
 use Livewire\Attributes\Computed;
 use App\Models\Family;
+use App\Models\Product;
 use App\Models\Subcategory;
+use Livewire\WithFileUploads;
 
 class ProductCreate extends Component
 {
+    Use WithFileUploads;
 
     public $families;
     public $family_id = '';
     public $category_id = '';
+
+    public $image;
     
     public $product = [
         'sku' => '',
@@ -26,6 +31,18 @@ class ProductCreate extends Component
 
     public function mount(){
         $this->families = Family::all();
+    }
+
+    public function boot(){
+        $this->withValidator(function($validator){
+            if($validator->fails()){
+                $this->dispatch('swal', [
+                    'icon' => 'error',
+                    'title' => 'Error!',
+                    'text' => 'Por favor, corrige los errores en el formulario.'
+                ]);
+            }
+        });
     }
 
     public function updatedFamilyId($value){
@@ -47,6 +64,30 @@ class ProductCreate extends Component
     #[Computed()]
     public function subcategories(){
         return Subcategory::where('category_id', $this->category_id)->get();
+    }
+
+    public function store(){
+
+        $this->validate([
+            'image' => 'required|image|max:1024',
+            'product.sku' => 'required|unique:products,sku',
+            'product.name' => 'required|max:255',
+            'product.description' => 'nullable',
+            'product.price' => 'required|numeric|min:0',
+            'product.subcategory_id' => 'required|exists:subcategories,id',
+        ]);
+
+        $this->product['image_path'] = $this->image->store('products');
+
+        $product = Product::create($this->product);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Bien hecho!',
+            'text' => 'Producto creado correctamente.'
+        ]);
+
+        return redirect()->route('admin.products.edit', $product);
     }
 
     public function render()
