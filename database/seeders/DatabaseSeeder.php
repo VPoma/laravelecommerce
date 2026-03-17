@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Family;
+use App\Models\Option;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             FamilySeeder::class,
+            OptionSeeder::class,
         ]);
         
         /*Product::factory(150)->create();*/
