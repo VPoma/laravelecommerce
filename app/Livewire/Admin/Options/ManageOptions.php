@@ -11,7 +11,7 @@ class ManageOptions extends Component
 
     public function mount()
     {
-        $this->options = Option::all();
+        $this->options = Option::with('features')->get();
     }
 
     public function render()
