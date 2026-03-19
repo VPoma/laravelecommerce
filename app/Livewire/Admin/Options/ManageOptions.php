@@ -9,6 +9,8 @@ class ManageOptions extends Component
 {
     public $options;
 
+    public $openModal = true;
+
     public function mount()
     {
         $this->options = Option::with('features')->get();
