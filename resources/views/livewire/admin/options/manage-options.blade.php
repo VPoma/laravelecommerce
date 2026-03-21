@@ -80,15 +80,15 @@
                     <x-label class="mb-1">
                         Nombre de la Opción
                     </x-label>
-                    <x-input class="w-full" placeholder="Por ejemplo: Tamaño, Color, Etc"/>
+                    <x-input wire:model="newOption.name" class="w-full" placeholder="Por ejemplo: Tamaño, Color, Etc"/>
                 </div>
 
                 <div>
                     <x-label class="mb-1">
                         Tipo de opción
                     </x-label>
-                    <x-select wire:model.defer="type" class="w-full">
-                        <option value="" disabled>Seleccione un tipo</option>
+                    <x-select wire:model="newOption.type" class="w-full">
+
                         <option value="1">Texto</option>
                         <option value="2">Color</option>
                     </x-select>
@@ -102,16 +102,43 @@
                 </span>
                 <hr class="flex-1">
             </div>
+            
+            <div class="mb-4 space-y-4">
+                @foreach ($newOption['features'] as $index => $feature)
+
+                    <div class="p-6 rounded-lg border border-gray-200" wire:key="features-{{ $index }}">
+
+                        <div class="grid grid-cols-2 gap-6">
+
+                            <div>
+                                <x-label class="mb-1">
+                                    valor
+                                </x-label>
+                                <x-input wire:model="newOption.features.{{ $index }}.value" class="w-full" placeholder="Ingrese el valor de la opción"/>
+                            </div>
+
+                            <div>
+                                <x-label class="mb-1">
+                                    Descripción
+                                </x-label>
+                                <x-input wire:model="newOption.features.{{ $index }}.value" class="w-full" placeholder="Ingrese la descripción de la opción"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                @endforeach
+            </div>
+
+            <div class="flex justify-end">
+                <x-button wire:click="addFeature" class="me-2">
+                    Agregar valor
+                </x-button>
+            </div>
+
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('open', false)">
-                Cancelar
-            </x-secondary-button>
-
-            <x-button class="ml-2" wire:click="save">
-                Guardar
-            </x-button>
 
         </x-slot>
 
