@@ -11,7 +11,7 @@ class ManageOptions extends Component
 
     public $newOption = [
         'name' => '',
-        'type' => 1,
+        'type' => 2,
         'features' => [
             [
                 'value' => '',
@@ -33,6 +33,12 @@ class ManageOptions extends Component
             'value' => '',
             'description' => '',
         ];
+    }
+
+    public function removeFeature($index)
+    {
+        unset($this->newOption['features'][$index]);
+        $this->newOption['features'] = array_values($this->newOption['features']);
     }
 
     public function render()
