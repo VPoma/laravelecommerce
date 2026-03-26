@@ -11,7 +11,7 @@ class ManageOptions extends Component
 
     public $newOption = [
         'name' => '',
-        'type' => 2,
+        'type' => 1,
         'features' => [
             [
                 'value' => '',
