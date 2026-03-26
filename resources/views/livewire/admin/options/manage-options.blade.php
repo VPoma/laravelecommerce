@@ -75,6 +75,9 @@
         </x-slot>
 
         <x-slot name="content">
+
+            <x-validation-errors class="mb-4"  />
+
             <div class="grid grid-cols-2 gap-6 mb-4">
                 <div>
                     <x-label class="mb-1">
@@ -152,13 +155,17 @@
 
             <div class="flex justify-end">
                 <x-button wire:click="addFeature" class="me-2">
-                    Agregar valor
+                    Añadir valor
                 </x-button>
             </div>
 
         </x-slot>
 
         <x-slot name="footer">
+
+            <button class="btn btn-blue" wire:click="addOption">
+                Agregar
+            </button>
 
         </x-slot>
 
