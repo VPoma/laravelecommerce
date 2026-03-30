@@ -9,7 +9,7 @@
                 Opciones de producto
                 </h1>
 
-                <button wire:click="$set('openModal', true)" class="btn btn-blue ml-2">
+                <button wire:click="$set('newOption.openModal', true)" class="btn btn-blue ml-2">
                     Nueva Opción
                 </button>
                 
@@ -69,7 +69,7 @@
 
     </section>
 
-    <x-dialog-modal wire:model="openModal">
+    <x-dialog-modal wire:model="newOption.openModal">
         <x-slot name="title">
             Crear nueva opción
         </x-slot>
@@ -107,7 +107,7 @@
             </div>
             
             <div class="mb-4 space-y-4">
-                @foreach ($newOption['features'] as $index => $feature)
+                @foreach ($newOption->features as $index => $feature)
 
                     <div class="p-6 rounded-lg border border-gray-200 relative" wire:key="features-{{ $index }}">
 
@@ -124,7 +124,7 @@
                                     valor
                                 </x-label>
 
-                                @switch($newOption['type'])
+                                @switch($newOption->type)
                                     @case(1)
                                         <x-input wire:model="newOption.features.{{ $index }}.value" class="w-full" placeholder="Ingrese el valor de la opción"/>
                                         @break
