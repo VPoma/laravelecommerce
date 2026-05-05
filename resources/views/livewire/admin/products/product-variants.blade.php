@@ -36,7 +36,7 @@
                     Opción
                 </x-label>
 
-                <x-select class="w-full" wire:model="variant.option_id">
+                <x-select class="w-full" wire:model.live="variant.option_id">
 
                     <option value="" disabled>
                         Seleccione Una Opción
@@ -53,6 +53,62 @@
                 </x-select>
 
             </div>
+
+            <div class="flex items-center mb-6">
+
+                <hr class="flex-1">
+                
+                <span class="mx-4">
+                    Valores
+                </span>
+
+                <hr class="flex-1">
+
+            </div>
+
+            <ul>
+
+                @foreach ($variant['features'] as $index => $feature)
+                
+                    <li wire:key="variante-feature-{{ $index }}"
+                        class="relative border border-gray-200 rounded-lg p-6">
+                        
+                        <div class="absolute -top-3 bg-white px-4">
+
+                            <button>
+                                <i class="fa-solid fa-trash-can text-red-500 hover:text-red-600"></i>
+                            </button>
+
+                        </div>
+
+                        <div>
+                            <x-label class="mb-1">
+                                Valores
+                            </x-label>
+
+                            <x-select class="w-full">
+
+                                <option value="" disabled>
+                                    Seleccione Un Valor
+                                </option>
+
+                                @foreach ($this->features as $feature)
+                                
+                                    <option value="{{ $feature->id }}">
+                                        {{ $feature->description }}
+                                    </option>
+
+                                @endforeach
+                            </x-select>
+
+                            <x-input class="w-full" wire:model="variant.features.{{ $index }}.value" />
+                        </div>
+
+                    </li>
+                    
+                @endforeach
+
+            </ul>
 
         </x-slot>
 
