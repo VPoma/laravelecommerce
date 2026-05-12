@@ -66,7 +66,7 @@
 
             </div>
 
-            <ul>
+            <ul class="mb-4 space-y-4">
 
                 @foreach ($variant['features'] as $index => $feature)
                 
@@ -75,7 +75,7 @@
                         
                         <div class="absolute -top-3 bg-white px-4">
 
-                            <button>
+                            <button wire:click="removeFeature( {{ $index }} )">
                                 <i class="fa-solid fa-trash-can text-red-500 hover:text-red-600"></i>
                             </button>
 
@@ -109,6 +109,14 @@
                 @endforeach
 
             </ul>
+
+            <div class="flex justify-end">
+
+                <x-button wire:click="addFeature">
+                    Agregar Valor
+                </x-button>
+
+            </div>
 
         </x-slot>
 

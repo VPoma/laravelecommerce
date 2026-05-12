@@ -36,6 +36,21 @@ class ProductVariants extends Component
         
     }
 
+    public function addFeature()
+    {
+        $this->variant['features'][] = [
+            'id' => '',
+            'value' => '',
+            'descripcion' => '',
+        ];
+    }
+
+    public function removeFeature($index)
+    {
+        unset($this->variant['features'][$index]);
+        $this->variant['features'] = array_values($this->variant['features']);
+    }
+
     public function render()
     {
         return view('livewire.admin.products.product-variants');
