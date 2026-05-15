@@ -19,7 +19,7 @@ class ProductVariants extends Component
             [
                 'id' => '',
                 'value' => '',
-                'descripcion' => '',
+                'description' => '',
             ],
         ],
     ];
@@ -27,6 +27,17 @@ class ProductVariants extends Component
     public function mount()
     {
         $this->options = Option::all();
+    }
+
+    public function updatedVariantOptionId($value)
+    {
+        $this->variant['features'] = [
+            [
+                'id' => '',
+                'value' => '',
+                'description' => '',
+            ],
+        ];
     }
 
     #[Computed()]
@@ -41,14 +52,29 @@ class ProductVariants extends Component
         $this->variant['features'][] = [
             'id' => '',
             'value' => '',
-            'descripcion' => '',
+            'description' => '',
         ];
+    }
+
+    public function feature_change($index)
+    {
+        $feature = Feature::find($this->variant['features'][$index]['id']);
+
+        if($feature) {
+            $this->variant['features'][$index]['value'] = $feature->value;
+            $this->variant['features'][$index]['description'] = $feature->description;
+        }
     }
 
     public function removeFeature($index)
     {
         unset($this->variant['features'][$index]);
         $this->variant['features'] = array_values($this->variant['features']);
+    }
+
+    public function save()
+    {
+        dd($this->variant);
     }
 
     public function render()

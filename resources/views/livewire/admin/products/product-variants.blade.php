@@ -86,7 +86,7 @@
                                 Valores
                             </x-label>
 
-                            <x-select class="w-full">
+                            <x-select class="w-full" wire:model.live="variant.features.{{ $index }}.id" wire:change="feature_change( {{ $index }} )">
 
                                 <option value="" disabled>
                                     Seleccione Un Valor
@@ -121,6 +121,14 @@
         </x-slot>
 
         <x-slot name="footer">
+
+            <x-danger-button wire:click="$set('openModal', false)">
+                Cancelar
+            </x-danger-button>
+
+            <x-button class="ml-2" wire:click="save">
+                Guardar
+            </x-button>
             
         </x-slot>
 
