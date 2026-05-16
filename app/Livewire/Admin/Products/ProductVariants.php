@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class ProductVariants extends Component
 {
+    public $product;
+
     public $openModal = true;
 
     public $options;
@@ -74,7 +76,18 @@ class ProductVariants extends Component
 
     public function save()
     {
-        dd($this->variant);
+        $this->validate([
+            'variant.option_id' => 'required',
+            'variant.features.*.id' => 'required',
+            'variant.features.*.value' => 'required',
+            'variant.features.*.description' => 'required',
+        ]);
+
+        $this->product->options()->attach($this->variant['option_id'], [
+            'features' => $this->variant['features']
+        ]);
+
+        $this->reset(['variant', 'openModal']);
     }
 
     public function render()

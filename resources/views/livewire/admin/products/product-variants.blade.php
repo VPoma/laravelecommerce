@@ -29,6 +29,8 @@
         </x-slot>
 
         <x-slot name="content">
+
+            <x-validation-errors class="mb-4" />
             
             <div class="mb-4">
 
@@ -101,7 +103,7 @@
                                 @endforeach
                             </x-select>
 
-                            <x-input class="w-full" wire:model="variant.features.{{ $index }}.value" />
+                         <!--   <x-input class="w-full" wire:model="variant.features.{{ $index }}.value" /> -->
                         </div>
 
                     </li>
