@@ -62,10 +62,10 @@
 
                                         {{-- color --}}
                                         <div class="relative">
-                                            <span class="inline-block h-6 w-6 shadow-lg rounded-full border-2 border-gray-300 mr-4" style="background-color: {{ $feature->description }};"></span>
+                                            <span class="inline-block h-6 w-6 shadow-lg rounded-full border-2 border-gray-300 mr-4" style="background-color: {{ $feature->value }};"></span>
                                             
                                             <button class="absolute z-10 left-3  -top-2 rounded-full bg-red-500 hover:bg-red-600 h-4 w-4 flex  justify-center items-center" 
-                                            onclick="confirmDelete({{ $feature->id }}, 'feature')">
+                                                onclick="confirmDelete({{ $feature->id }}, 'feature')">
                                                 <i class="fa-solid fa-xmark text-white text-xs"></i>
                                             </button>
 

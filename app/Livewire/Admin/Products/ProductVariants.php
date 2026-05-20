@@ -11,7 +11,7 @@ class ProductVariants extends Component
 {
     public $product;
 
-    public $openModal = true;
+    public $openModal = false;
 
     public $options;
 
@@ -72,6 +72,11 @@ class ProductVariants extends Component
     {
         unset($this->variant['features'][$index]);
         $this->variant['features'] = array_values($this->variant['features']);
+    }
+
+    public function deleteFeature($option_id, $feature_id)
+    {
+        dd($option_id, $feature_id);
     }
 
     public function save()
