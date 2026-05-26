@@ -76,7 +76,19 @@ class ProductVariants extends Component
 
     public function deleteFeature($option_id, $feature_id)
     {
-        dd($option_id, $feature_id);
+        $this->product->options()->updateExistingPivot($option_id, [
+            'features' => array_filter($this->product->options->find($option_id)->pivot->features, function($feature) use ($feature_id) {
+                return $feature['id'] != $feature_id;
+            })
+        ]);
+
+        $this->product = $this->product->fresh();
+    }
+
+    public function deleteOption($option_id)
+    {
+        $this->product->options()->detach($option_id);
+        $this->product = $this->product->fresh();
     }
 
     public function save()

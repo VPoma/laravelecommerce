@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session; // 1. Importas la Fachada
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -63,7 +64,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy1(Product $product)
     {
         Storage::delete($product->image_path);
 
@@ -77,5 +78,26 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index');
         
+    }
+
+    public function destroy(Product $product)
+    {
+        // Romper la relación pivote para evitar el error 1451
+        $product->options()->detach();
+
+        if ($product->image_path) {
+            Storage::delete($product->image_path);
+        }
+
+        $product->delete();
+
+        // 2. Usas la fachada de forma estática (Intelephense lo entenderá perfectamente)
+        Session::flash('swal', [
+            'icon' => 'success',
+            'title' => 'Producto eliminado',
+            'text' => 'El producto ha sido eliminado correctamente.',
+        ]);
+
+        return redirect()->route('admin.products.index');
     }
 }
